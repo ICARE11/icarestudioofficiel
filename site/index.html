@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="google" content="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0c">
+  <meta name="description" content="Icare Studio — développement Roblox, Discord, coaching et stratégie. Always Building.">
+  <meta name="keywords" content="développement Roblox, développeur Discord, coaching, stratégie">
+  <link id="canonical-url" rel="canonical" href="https://icare.dev/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Icare Studio — Always Building">
+  <meta property="og:description" content="Développement Roblox et Discord, coaching et stratégie.">
+  <meta property="og:image" content="https://icare.dev/icon.svg">
+  <meta property="og:url" content="https://icare.dev/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Icare Studio — Always Building">
+  <meta name="twitter:description" content="Développement Roblox et Discord, coaching et stratégie.">
+  <meta name="twitter:image" content="https://icare.dev/icon.svg">
+  <link rel="manifest" href="./manifest.json">
+
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <title>Icare Studio — Always Building</title>
+  <script id="organization-jsonld" type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Icare Studio","url":"https://icare.dev/","logo":"https://icare.dev/icon.svg","sameAs":["https://discord.gg/6QXWDapWC"]}</script>
+  <script id="products-jsonld" type="application/ld+json">{"@context":"https://schema.org","@graph":[]}</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ["DM Sans", "sans-serif"], display: ["Manrope", "sans-serif"] } } } };
+  </script>
+</head>
+<body>
+  <div id="site-shell">
+    <header class="topbar">
+      <a class="wordmark" href="#home" aria-label="Icare Studio, accueil">icare<span>.</span></a>
+      <nav class="desktop-nav" aria-label="Navigation principale">
+        <a href="#home" data-page-link="home" data-i18n="nav.home">Accueil</a>
+        <a href="#portfolio" data-page-link="portfolio" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="#partners" data-page-link="partners" data-i18n="nav.partners">Partenaires</a>
+        <a href="#shop" data-page-link="shop" data-i18n="nav.services">Boutique / Services</a>
+        <a href="#client" data-page-link="client" data-i18n="nav.client">Espace client</a>
+      </nav>
+      <div class="header-actions">
+        <span id="commission-state" class="availability"><i></i><span data-i18n="availability.open">Ouvert aux commissions</span></span>
+        <a id="header-support" class="button button-outline support-button" href="https://www.onparticipe.fr/c/icarestudio" target="_blank" rel="noopener noreferrer" data-i18n="support.button">Soutenir Icare Studio 🖤</a>
+        <div id="language-switcher" class="language-switcher">
+          <button id="language-toggle" class="language-toggle" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="language-menu">FR</button>
+          <div id="language-menu" class="language-menu" role="listbox" hidden></div>
+          <select id="language-select" class="sr-only" aria-hidden="true" tabindex="-1">
+            <option value="fr">FR</option>
+            <option value="en">EN</option>
+            <option value="es">ES</option>
+            <option value="de">DE</option>
+            <option value="it">IT</option>
+            <option value="ja">JA</option>
+            <option value="zh">ZH</option>
+          </select>
+        </div>
+        <div class="notification-wrap">
+          <button id="notification-bell" class="icon-button notification-bell" type="button" aria-label="Notifications" aria-expanded="false" aria-controls="notification-menu" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>
+            <span id="notification-count" class="notification-count" hidden>0</span>
+          </button>
+          <div id="notification-menu" class="notification-menu" role="dialog" aria-modal="true" aria-labelledby="notification-menu-title" hidden>
+            <div class="notification-menu-head">
+              <strong id="notification-menu-title" data-i18n="notifications.title">Notifications</strong>
+              <button id="notifications-mark-read" type="button" class="text-button" data-i18n="notifications.markRead">Tout marquer comme lu</button>
+            </div>
+            <div id="notification-list" class="notification-list" role="list">
+              <p class="muted notification-empty" data-i18n="notifications.empty">Aucune nouvelle notification.</p>
+            </div>
+          </div>
+        </div>
+        <button id="account-button" class="icon-button account-button" aria-label="Espace client" title="Espace client">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.3 3.1-5 7-5s6.2 1.7 7 5"/></svg>
+        </button>
+        <button id="admin-button" class="icon-button admin-button" type="button" aria-label="Administration" title="Administration" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2"/><circle cx="15" cy="17" r="2"/></svg>
+        </button>
+        <button id="menu-button" class="icon-button menu-button" aria-label="Ouvrir le menu"><span></span><span></span></button>
+      </div>
+    </header>
+
+    <main id="public-content" class="public-content">
+      <section id="home" class="hero section-wrap spa-page" data-page="home">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="hero.eyebrow">Icare Studio · Indépendant</span></div>
+          <h1 data-i18n="hero.title">Des idées claires.<br><span>Des projets qui vivent.</span></h1>
+          <p class="hero-lede" data-i18n="hero.lede">Je transforme vos idées en expériences numériques utiles, élégantes et pensées pour durer.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#shop" data-page-link="shop"><span data-i18n="hero.cta">Découvrir les services</span><span aria-hidden="true">↗</span></a>
+            <button class="button button-quiet" id="hero-contact" data-i18n="hero.contact">Parlons de votre projet</button>
+          </div>
+          <div class="hero-footnote"><span class="status-dot"></span><span data-i18n="hero.status">Disponible pour de nouveaux projets</span></div>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
+          <div class="visual-glow"></div>
+          <div class="hero-mark">i<span>.</span></div>
+          <div class="floating-note"><span class="note-icon">✳</span><span><strong>Always Building</strong><small>Roblox · Discord · Strategy</small></span></div>
+          <div class="visual-caption">PARIS, FRANCE <span>·</span> AVAILABLE WORLDWIDE</div>
+        </div>
+      </section>
+
+      <section class="studio-console section-wrap spa-page" data-page="home" aria-label="Icare Studio live development terminal">
+        <div class="console-heading"><span class="status-dot"></span><span>STUDIO TERMINAL</span><span id="console-network" class="console-network">NETWORK: CONNECTED</span></div>
+        <div class="console-body"><div class="console-output" id="console-output" aria-live="polite"><p><span>icare@studio</span>:~$ <b id="console-typed"></b><i class="console-cursor"></i></p></div><canvas id="console-visualizer" aria-hidden="true"></canvas></div>
+        <div class="console-status"><span><i></i> BUILD STATUS <b>READY</b></span><span>NETWORK <b id="console-latency">—</b></span><span>SESSION <b id="console-uptime">00:00</b></span></div>
+      </section>
+
+      <section id="about" class="profile-section section-wrap spa-page" data-page="home">
+        <div class="section-label"><span>01</span><span data-i18n="profile.label">En dehors du code</span></div>
+        <article class="profile-card glass-card">
+          <div id="discord-banner" class="discord-banner">
+            <div class="banner-fallback"></div>
+            <img id="discord-banner-image" alt="" hidden>
+            <span class="banner-caption">ICARE / DISCORD</span>
+          </div>
+          <div class="profile-main">
+            <div class="avatar-wrap">
+              <img id="discord-avatar" class="discord-avatar" src="./icon.svg" alt="Avatar de Icare">
+              <span id="discord-indicator" class="discord-indicator offline" title="Hors ligne"></span>
+            </div>
+            <div class="profile-info">
+              <div class="profile-name-row"><h2>Icare</h2><span class="profile-tag">Always Building</span></div>
+              <p id="discord-status" class="discord-status" data-i18n="profile.loading">Chargement du statut Discord…</p>
+              <p id="discord-activity" class="discord-activity"></p>
+            </div>
+            <button id="copy-discord" class="button button-outline copy-button"><span data-i18n="profile.copy">Copier @i.lsn1</span><span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="profile-meta">
+            <div><span class="meta-label">IDENTIFIANT</span><span id="discord-presence" class="meta-value">@i.lsn1</span></div>
+            <div><span class="meta-label">MESSAGE PERSONNALISÉ</span><span id="discord-focus" class="meta-value">—</span></div>
+            <div><span class="meta-label" data-i18n="profile.badges">BADGES DISCORD</span><span id="discord-badges" class="meta-value">—</span></div>
+          </div>
+        </article>
+        <article id="guild-card" class="guild-card">
+          <div class="guild-card-glow"></div>
+          <img id="guild-icon" class="guild-icon" src="./icon.svg" alt="Icône du serveur Icare Studio">
+          <div class="guild-copy"><span class="guild-kicker">DISCORD COMMUNITY</span><h2 id="guild-name">Icare Studio</h2><p id="guild-description">Retrouvez la communauté Icare Studio sur Discord.</p><div class="guild-stats"><span><i></i><strong id="guild-online">—</strong> en ligne</span><span><i></i><strong id="guild-members">—</strong> membres</span></div></div>
+          <a class="button button-primary" href="https://discord.gg/6QXWDapWC" target="_blank" rel="noreferrer">Rejoindre le serveur <span aria-hidden="true">↗</span></a>
+        </article>
+      </section>
+
+      <section id="shop" class="services-section section-wrap spa-page" data-page="shop">
+        <div class="section-heading">
+          <div><div class="section-label"><span>02</span><span data-i18n="services.label">Ce que je fais</span></div><h2 data-i18n="services.title">Un bon projet commence<br>par une bonne <span>collaboration.</span></h2></div>
+          <p data-i18n="services.intro">Du premier échange à la mise en ligne, je vous accompagne avec une approche claire, attentive et orientée résultats.</p>
+        </div>
+        <div class="service-toolbar">
+          <div id="category-filters" class="filter-list" role="group" aria-label="Filtrer par catégorie">
+            <button class="filter-chip active" data-category="all" data-i18n="filters.all">Tout</button>
+            <button class="filter-chip" data-category="roblox">Roblox</button>
+            <button class="filter-chip" data-category="discord">Discord</button>
+            <button class="filter-chip" data-category="graphisme" data-i18n="filters.graphisme">Graphisme</button>
+            <button class="filter-chip" data-category="coaching" data-i18n="filters.coaching">Coaching</button>
+            <button class="filter-chip" data-category="strategy" data-i18n="filters.strategy">Stratégie</button>
+          </div>
+          <div class="promo-code-box">
+            <label for="shop-promo-code" data-i18n="shop.promoLabel">Code promo</label>
+            <div><input id="shop-promo-code" type="text" maxlength="32" autocomplete="off" placeholder="ICARE10"><button id="apply-promo-code" class="button button-outline" type="button" data-i18n="shop.applyPromo">Appliquer</button></div>
+            <span id="shop-promo-feedback" class="muted" aria-live="polite"></span>
+          </div>
+          <label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4.5 4.5"/></svg><input id="product-search" type="search" data-i18n-placeholder="services.search" placeholder="Rechercher une prestation…"></label>
+        </div>
+        <div id="products-grid" class="products-grid" aria-live="polite"></div>
+        <div id="empty-products" class="empty-state" hidden><div class="empty-symbol">✳</div><p data-i18n="services.empty">Le prochain drop arrive bientôt.</p><span data-i18n="services.emptySub">De nouvelles idées sont en préparation.</span></div>
+        <div class="shop-support-banner"><a class="button button-outline support-button" href="https://www.onparticipe.fr/c/icarestudio" target="_blank" rel="noopener noreferrer" data-i18n="support.button">Soutenir Icare Studio 🖤</a><span data-i18n="shop.payment">Soutenez les projets via la cagnotte officielle OnParticipe. Aucun paiement n’est demandé au dépôt d’une demande.</span></div>
+      </section>
+
+      <section class="numbers-section section-wrap spa-page" data-page="home">
+        <div class="section-label"><span>03</span><span data-i18n="numbers.label">Du concret, ensemble</span></div>
+        <div class="numbers-grid" id="numbers-grid" aria-live="polite"><p class="muted stats-empty">Les statistiques seront affichées ici.</p></div>
+      </section>
+
+      <section id="portfolio" class="portfolio-section section-wrap spa-page" data-page="portfolio">
+        <div class="section-heading">
+          <div><div class="section-label"><span>02</span><span data-i18n="portfolio.label">Projets sélectionnés</span></div><h2 data-i18n="portfolio.title">Du concept au <span>projet livré.</span></h2></div>
+          <p data-i18n="portfolio.intro">Une sélection de réalisations, leurs choix de conception et les défis relevés.</p>
+        </div>
+        <div id="portfolio-filters" class="filter-list" role="group" aria-label="Filtrer le portfolio">
+          <button class="filter-chip active" data-portfolio-category="all" data-i18n="portfolio.filter.all">Tout</button>
+          <button class="filter-chip" data-portfolio-category="web" data-i18n="portfolio.filter.web">Développement Web/App</button>
+          <button class="filter-chip" data-portfolio-category="gaming" data-i18n="portfolio.filter.gaming">Roblox & Gaming</button>
+          <button class="filter-chip" data-portfolio-category="graphisme" data-i18n="portfolio.filter.graphisme">Graphisme & Design Visuel</button>
+        </div>
+        <div id="portfolio-grid" class="portfolio-grid" aria-live="polite"></div>
+        <div id="empty-portfolio" class="empty-state" hidden><div class="empty-symbol">✳</div><p data-i18n="portfolio.empty">Aucun projet publié pour le moment.</p><span data-i18n="portfolio.emptySub">Les prochaines réalisations seront présentées ici.</span></div>
+      </section>
+
+      <section id="partners" class="partners-section section-wrap spa-page" data-page="partners">
+        <div class="section-heading">
+          <div><div class="section-label"><span>03</span><span data-i18n="partners.label">Partenaires</span></div><h2 data-i18n="partners.title">Ils nous font <span>confiance.</span></h2></div>
+          <p data-i18n="partners.intro">Communautés, projets et collaborations avec lesquels Icare Studio travaille.</p>
+        </div>
+        <div id="partners-grid" class="partners-grid" aria-live="polite"></div>
+        <div id="empty-partners" class="empty-state" hidden><div class="empty-symbol">✳</div><p data-i18n="partners.empty">Aucun partenaire publié pour le moment.</p><span data-i18n="partners.emptySub">Les prochains partenaires seront présentés ici.</span></div>
+      </section>
+<section id="client" class="client-page section-wrap spa-page" data-page="client">
+        <div class="client-page-card glass-card">
+          <div class="section-label"><span>04</span><span data-i18n="client.label">Votre espace</span></div>
+          <h1 data-i18n="client.title">Un suivi clair, au même endroit.</h1>
+          <div id="client-invitation">
+            <p class="muted" data-i18n="client.intro">Connectez-vous pour retrouver vos demandes, suivre leur avancement et échanger avec Icare en privé.</p>
+            <div class="contact-actions">
+            <button id="client-signin" class="button button-primary" type="button" data-i18n="client.signin">Connexion / inscription</button>
+            </div>
+          </div>
+          <div id="client-dashboard" hidden>
+            <div class="client-dashboard-head"><div><strong id="client-account-name"></strong><span id="client-account-email" class="muted"></span></div><button id="client-signout" class="text-button" type="button">Se déconnecter</button></div>
+            <section class="client-account-panel" aria-labelledby="client-account-heading"><h2 id="client-account-heading">Informations du compte</h2><dl class="client-account-grid"><dt>Statut</dt><dd id="client-account-status">—</dd><dt>Rôle</dt><dd id="client-account-role">—</dd><dt>Inscription</dt><dd id="client-account-created">—</dd><dt>Connexion</dt><dd id="client-account-provider">—</dd><dt>Sécurité</dt><dd id="client-account-security">Mot de passe protégé</dd></dl><button id="client-reset-password" class="text-button" type="button">Recevoir un lien de réinitialisation</button></section>
+            <section class="client-projects-panel" aria-labelledby="client-projects-heading"><h2 id="client-projects-heading">Suivi global des projets & commandes</h2><div id="client-projects-list" class="client-projects-list"></div></section>
+            <section class="client-data-panel" aria-labelledby="client-data-heading"><h2 id="client-data-heading">Données & sécurité</h2><p class="muted">Exportez une copie de vos informations ou demandez la suppression de votre compte. La demande sera traitée par l’administrateur ; elle ne supprime pas immédiatement les données.</p><div class="client-dashboard-actions"><button id="client-export-data" class="button button-outline" type="button">Exporter mes données</button><button id="client-request-deletion" class="button button-outline danger-text" type="button">Demander la suppression du compte</button></div></section>
+            <div class="client-dashboard-actions"><button id="client-open-chat" class="button button-outline" type="button">Ouvrir la messagerie <span id="client-unread-count" class="client-unread-count" hidden></span></button><button id="client-new-request" class="button button-primary" type="button">Nouvelle demande</button></div>
+            <div id="client-conversations" class="client-conversation-list"></div>
+            <div id="client-page-state" class="request-status" aria-live="polite"></div>
+            <ol id="client-order-timeline" class="order-timeline" aria-label="Progression de la demande" hidden><li data-order-step="requested">Demande reçue</li><li data-order-step="discussion">En discussion</li><li data-order-step="awaiting_payment">En attente de paiement</li><li data-order-step="in_progress">En cours</li><li data-order-step="testing">En test</li><li data-order-step="delivered">Livré</li></ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="legal" class="legal-page section-wrap spa-page" data-page="legal">
+        <div class="section-heading"><div><div class="section-label"><span>06</span><span>Informations</span></div><h2>Cadre légal & <span>confidentialité.</span></h2></div><p>Informations relatives à l’utilisation du site et au traitement des données.</p></div>
+        <div class="legal-content">
+          <article id="legal-notice"><h3 data-i18n="legal.notice.title">Mentions légales</h3><p id="legal-updated-label" class="legal-updated-label" hidden>Dernière mise à jour : <time id="legal-updated-at"></time></p><dl class="legal-identity"><dt>Éditeur</dt><dd>Icare Studio</dd><dt data-legal-field="legal_business_status">Statut juridique</dt><dd id="legal-business-status" data-legal-field="legal_business_status" hidden></dd><dt data-legal-field="legal_registration">SIRET / SIREN</dt><dd id="legal-registration" data-legal-field="legal_registration" hidden></dd><dt data-legal-field="legal_address">Siège social</dt><dd id="legal-address" data-legal-field="legal_address" hidden></dd><dt data-legal-field="legal_email">Contact e-mail</dt><dd id="legal-email" data-legal-field="legal_email" hidden></dd><dt data-legal-field="legal_director">Directeur de publication</dt><dd id="legal-director" data-legal-field="legal_director" hidden></dd><dt data-legal-field="legal_mediator">Médiateur de la consommation</dt><dd id="legal-mediator" data-legal-field="legal_mediator" hidden></dd></dl><div id="legal-notice-content"></div></article>
+          <article id="legal-terms"><h3 data-i18n="legal.terms.title">Conditions générales d’utilisation</h3><div id="legal-terms-content"><p>L’accès au site est proposé à titre informatif et peut être interrompu pour maintenance. L’utilisateur s’engage à fournir des informations exactes, à respecter les droits des tiers et à ne pas détourner les formulaires, le chat ou les services du site.</p><p>Les contenus et réalisations présentés restent soumis aux droits de leurs auteurs et titulaires respectifs. Toute réutilisation nécessite une autorisation préalable lorsqu’elle est requise.</p></div></article>
+          <article id="legal-sales"><h3 data-i18n="legal.sales.title">Conditions générales de vente</h3><div id="legal-sales-content"><p>Les pages de services présentent des offres indicatives. Le périmètre, les délais, le prix, les modalités de paiement, les éventuelles révisions et les droits de livraison sont convenus individuellement, par écrit. Les modalités de paiement sont convenues individuellement. Le soutien aux projets peut s’effectuer via OnParticipe (https://www.onparticipe.fr/c/icarestudio). Aucun paiement n’est demandé au dépôt d’une demande sur ce site.</p><p>Le droit de rétractation légal de 14 jours reste applicable lorsqu’il est prévu par la loi. Pour un service ou contenu numérique personnalisé, le consommateur peut demander expressément le début de l’exécution avant la fin de ce délai. La perte du droit de rétractation n’intervient que dans les conditions légales applicables, notamment après exécution complète et avec l’accord/reconnaissance requis conformément à l’article L.221-28 du Code de la consommation ; elle n’est pas automatique du seul fait qu’une demande est envoyée.</p><p>Les garanties légales applicables demeurent réservées. En cas de litige, le client est invité à contacter Icare afin de rechercher une solution amiable. Le consommateur conserve les voies de recours et de médiation prévues par la réglementation applicable.</p></div></article>
+          <article id="legal-privacy"><h3><span data-i18n="legal.privacy.title">Confidentialité & RGPD</span></h3><div id="legal-privacy-content"><p>Les données de compte (adresse e-mail et nom affiché), messages de support et informations de suivi sont traités pour fournir l’espace client et répondre aux demandes. Elles sont stockées dans Supabase et ne sont pas vendues.</p><p>Les données sont conservées pendant la durée nécessaire au suivi de la relation et aux obligations applicables. Vous pouvez demander l’accès, la rectification ou la suppression de vos données en contactant Icare via Discord. L’authentification est assurée par Supabase ; les demandes de mot de passe passent par leur mécanisme sécurisé.</p><p>Les notifications Push ne sont activées qu’après votre autorisation et peuvent être désactivées dans les réglages de votre navigateur.</p></div></article>
+        </div>
+      </section>
+
+      <section class="faq-section section-wrap spa-page" data-page="home">
+        <div class="section-heading compact"><div><div class="section-label"><span>04</span><span data-i18n="faq.label">Questions fréquentes</span></div><h2 data-i18n="faq.title">Avant de se lancer.</h2></div></div>
+        <div class="faq-list">
+          <details><summary data-i18n="faq.q1">Comment démarrer une collaboration ?<span>+</span></summary><p data-i18n="faq.a1">Écrivez-moi sur Discord ou créez un compte pour démarrer une conversation privée. Nous clarifierons votre besoin et les prochaines étapes ensemble.</p></details>
+          <details><summary data-i18n="faq.q2">Quels sont les délais de réalisation ?<span>+</span></summary><p data-i18n="faq.a2">Ils dépendent du périmètre et de la disponibilité. Chaque projet reçoit une estimation claire avant son lancement.</p></details>
+          <details><summary data-i18n="faq.q3">Proposes-tu du coaching individuel ?<span>+</span></summary><p data-i18n="faq.a3">Oui, pour le développement, la structuration de projet ou la communication. Le format est adapté à vos objectifs.</p></details>
+          <details><summary data-i18n="faq.q4">Comment sont gérées les commandes ?<span>+</span></summary><p data-i18n="faq.a4">Les demandes sont suivies depuis votre espace client. Les détails et les conditions sont confirmés directement avant tout démarrage.</p></details>
+        </div>
+      </section>
+
+      <section id="journal" class="journal-section section-wrap spa-page" data-page="home">
+        <div class="section-heading compact">
+          <div><div class="section-label"><span>05</span><span data-i18n="journal.label">Journal de bord</span></div><h2 data-i18n="journal.title">Ce qui se construit.</h2></div>
+          <button id="review-open" class="button button-outline" data-i18n="journal.review">Laisser un avis</button>
+        </div>
+        <div id="changelog-list" class="changelog-list"><p class="muted" data-i18n="journal.loading">Chargement du journal…</p></div>
+      </section>
+
+      <section class="contact-section section-wrap spa-page" data-page="home">
+        <div class="contact-card"><div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="contact.eyebrow">Tout commence par un message</span></div><h2 data-i18n="contact.title">Votre prochaine idée<br>mérite de prendre vie.</h2><div class="contact-actions"><a class="button button-primary" href="https://discord.com/users/" id="discord-link" target="_blank" rel="noreferrer"><span data-i18n="contact.cta">Retrouver Icare sur Discord</span><span aria-hidden="true">↗</span></a><button class="button button-quiet" id="contact-chat" data-i18n="contact.chat">Écrire un message privé</button></div></div>
+      </section>
+    </main>
+
+    <section id="maintenance-screen" class="maintenance-screen" hidden>
+      <div class="maintenance-mark">i<span>.</span></div><span class="section-label" data-i18n="maintenance.label">UN INSTANT, S'IL VOUS PLAÎT</span><h1 id="maintenance-title" data-i18n="maintenance.title">On peaufine quelque chose.</h1><p id="maintenance-message" data-i18n="maintenance.message">Icare Studio revient très bientôt. Merci pour votre patience.</p><div id="maintenance-countdown" class="maintenance-countdown"></div><button class="button button-outline" id="maintenance-login" data-i18n="maintenance.login">Connexion administrateur</button>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-left">
+        <a class="wordmark" href="#home" data-page-link="home">icare<span>.</span></a>
+        <p>© <span id="current-year">2026</span> Icare Studio · <span data-i18n="footer.rights">Tous droits réservés.</span> <a id="footer-discord" href="https://discord.com/users/1555098532099129446" target="_blank" rel="noreferrer">@i.lsn1</a></p>
+      </div>
+      <nav class="legal-footer-links" aria-label="Informations légales">
+        <a href="#legal" data-page-link="legal" data-legal-target="legal-notice" data-i18n="footer.legal">Mentions légales</a>
+        <span class="footer-sep" aria-hidden="true">|</span>
+        <a href="#legal" data-page-link="legal" data-legal-target="legal-terms" data-i18n="footer.terms">CGU</a>
+        <span class="footer-sep" aria-hidden="true">|</span>
+        <a href="#legal" data-page-link="legal" data-legal-target="legal-sales" data-i18n="footer.sales">CGV</a>
+        <span class="footer-sep" aria-hidden="true">|</span>
+        <a href="#legal" data-page-link="legal" data-legal-target="legal-privacy" data-i18n="footer.privacy">RGPD</a>
+        <span class="footer-sep" aria-hidden="true">|</span>
+        <button id="cookie-settings-open" class="text-button" type="button" data-i18n="footer.cookies">Cookies</button>
+      </nav>
+      <div class="footer-right">
+        <a class="button button-outline support-button footer-support" href="https://www.onparticipe.fr/c/icarestudio" target="_blank" rel="noopener noreferrer" data-i18n="support.button">Soutenir Icare Studio 🖤</a>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <div id="notification-backdrop" class="notification-backdrop" hidden aria-hidden="true"></div>
+  <aside id="cookie-consent" class="cookie-consent" role="dialog" aria-label="Préférences de confidentialité" hidden><div><strong>Votre confidentialité</strong><p>Les cookies essentiels assurent le fonctionnement du site. Les notifications push système (Web Push native) sont facultatives et ne sont activées qu’après votre accord explicite.</p></div><div class="cookie-actions"><button id="cookie-reject" class="button button-outline" type="button">Refuser les options</button><button id="cookie-accept" class="button button-primary" type="button">Accepter les notifications</button></div></aside>
+  <dialog id="order-dialog" class="app-dialog order-dialog"><button class="dialog-close" data-close-dialog aria-label="Fermer">×</button><div class="dialog-kicker">ICARE STUDIO · COMMANDE</div><h2 id="order-title">Votre demande</h2><p id="order-product-summary" class="muted"></p><form id="order-form" class="admin-form"><label>Détails ou souhaits particuliers (facultatif)<textarea id="order-details" rows="4" maxlength="1800" placeholder="Précisez votre besoin, vos liens ou contraintes…"></textarea></label><label class="order-consent required-consent"><input id="order-terms-accepted" type="checkbox" required><span data-i18n="order.terms">J'accepte les Conditions Générales de Vente (CGV) et je reconnais expressément renoncer à mon droit de rétractation de 14 jours, s'agissant de la fourniture d'un contenu ou service numérique personnalisé immédiatement exécuté.</span></label><label class="order-consent"><input id="order-start-early" type="checkbox"><span>Je demande expressément le commencement de la prestation personnalisée avant la fin du délai de rétractation, dans les conditions légales. La perte du droit ne s’applique que si les conditions prévues par la loi sont réunies.</span></label><p id="order-terms-warning" class="form-warning" role="alert" hidden>Veuillez cocher la case d’acceptation des CGV et de renoncement au droit de rétractation pour continuer.</p><p class="paypal-notice"><img class="paypal-logo" src="https://cdn.pixabay.com/photo/2018/05/08/21/29/paypal-3384015_640.png" alt="PayPal" loading="lazy"><span data-i18n="shop.paypal">Paiement sécurisé exclusivement via PayPal après validation de votre demande avec Icare.</span></p><button id="order-submit" class="button button-primary full-button" type="submit" disabled>Valider ma demande</button></form></dialog>
+  <dialog id="auth-dialog" class="app-dialog"><button class="dialog-close" data-close-dialog aria-label="Fermer">×</button><div class="dialog-kicker">ICARE STUDIO</div><h2 id="auth-title" data-i18n="auth.title">Votre espace client</h2><p id="auth-description" class="muted" data-i18n="auth.description">Connectez-vous pour suivre vos demandes et échanger en privé.</p><form id="auth-form"><label><span data-i18n="auth.email">Adresse e-mail</span><input id="auth-email" type="email" autocomplete="email" required></label><label><span data-i18n="auth.password">Mot de passe</span><input id="auth-password" type="password" autocomplete="current-password" minlength="8" required></label><div id="auth-name-field" hidden><label><span data-i18n="auth.name">Nom affiché</span><input id="auth-name" type="text" autocomplete="name"></label></div><button id="auth-submit" class="button button-primary full-button" type="submit" data-i18n="auth.login">Se connecter</button></form><button id="forgot-password" class="text-button" data-i18n="auth.forgot">Mot de passe oublié ?</button><form id="password-reset-form" class="admin-form" hidden><p class="muted" data-i18n="auth.resetDescription">Choisissez un nouveau mot de passe pour votre compte.</p><label><span data-i18n="auth.newPassword">Nouveau mot de passe</span><input id="new-password" type="password" minlength="8" autocomplete="new-password" required></label><button class="button button-primary full-button" type="submit" data-i18n="auth.updatePassword">Mettre à jour le mot de passe</button></form><button id="auth-toggle" class="text-button" data-i18n="auth.signupPrompt">Créer un compte</button><div id="auth-user-panel" hidden><p id="auth-user-email"></p><div class="dialog-actions"><button id="open-chat" class="button button-primary" data-i18n="auth.chat">Ouvrir le chat</button><button id="open-admin" class="button button-outline" hidden data-i18n="auth.admin">Administration</button><button id="auth-signout" class="text-button" data-i18n="auth.logout">Se déconnecter</button></div></div></dialog>
+
+  <dialog id="chat-dialog" class="app-dialog chat-dialog">
+    <button class="dialog-close" data-close-dialog aria-label="Fermer">×</button><div class="dialog-kicker">ESPACE CLIENT</div>
+    <div id="first-contact-panel" class="first-contact-panel" hidden><h2>Parlons de votre projet.</h2><p class="muted">Choisissez un sujet et décrivez votre besoin pour démarrer une conversation privée.</p><form id="first-contact-form" class="admin-form"><label>Sujet<select id="first-contact-subject" required><option value="discord">Discord</option><option value="roblox">Roblox</option><option value="coaching">Coaching</option><option value="other">Autre</option></select></label><label>Votre message<textarea id="first-contact-message" rows="5" maxlength="2000" required placeholder="Décrivez votre projet ou votre question…"></textarea></label><label class="order-consent required-consent"><input id="first-contact-terms" type="checkbox" required><span>J’ai lu et j’accepte les <a href="#legal" data-page-link="legal" data-legal-target="legal-sales">CGV</a>. Cette prise de contact ne déclenche aucun paiement.</span></label><label id="order-consent-wrap" class="order-consent" hidden><input id="order-consent" type="checkbox"><span>Je demande expressément le commencement de l’exécution de cette prestation numérique personnalisée avant la fin du délai de rétractation et reconnais qu’une fois le service pleinement exécuté, je pourrai perdre mon droit de rétractation dans les conditions de l’article L.221-28 du Code de la consommation.</span></label><div class="chat-compose-meta"><span><span id="first-contact-count">0</span> / 2000</span><span>Liens et détails bienvenus</span></div><button id="first-contact-send" class="button button-primary full-button" type="submit">Envoyer ma demande</button></form></div>
+    <div id="conversation-chat" class="conversation-chat" hidden><h2 data-i18n="chat.title">Votre conversation</h2><p id="chat-request-status" class="request-status"></p><ol id="order-timeline" class="order-timeline" aria-label="Progression de la demande"><li data-order-step="requested">Demande reçue</li><li data-order-step="discussion">En discussion</li><li data-order-step="awaiting_payment">En attente de paiement</li><li data-order-step="in_progress">En cours</li><li data-order-step="testing">En test</li><li data-order-step="delivered">Livré</li></ol><a id="client-payment-link" class="button button-primary" href="#" target="_blank" rel="noopener noreferrer" hidden>Régler / soutenir ↗</a><button id="client-delete-conversation" class="text-button danger-text" type="button">Supprimer cette conversation</button><button id="enable-notifications" class="button button-outline" type="button" data-i18n="notifications.enable">Activer les notifications sur cet appareil</button><div id="chat-messages" class="chat-messages" aria-live="polite"></div><form id="chat-form" class="chat-form"><label class="sr-only" for="chat-input">Votre message</label><textarea id="chat-input" rows="3" maxlength="2000" required data-i18n-placeholder="chat.placeholder" placeholder="Écrivez votre message…"></textarea><div class="chat-compose-footer"><span><span id="chat-character-count">0</span> / 2000 · Liens et détails bienvenus</span><button class="button button-primary" type="submit" aria-label="Envoyer">Envoyer ↗</button></div></form><button id="new-request" class="text-button" hidden>Créer une nouvelle demande</button><button id="history-toggle" class="text-button" data-i18n="chat.history">Voir le suivi de ma demande</button><div id="client-history" class="admin-list" hidden></div></div>
+  </dialog>
+
+  <dialog id="admin-dialog" class="app-dialog admin-dialog"><button class="dialog-close" data-close-dialog aria-label="Fermer">×</button><div class="dialog-kicker">ICARE STUDIO · ADMIN</div><h2 data-i18n="admin.title">Console de pilotage</h2><div class="admin-tabs"><button class="admin-tab active" data-tab="products" data-i18n="admin.products">Boutique</button><button class="admin-tab" data-tab="partners">Partenaires</button><button class="admin-tab" data-tab="portfolio">Portfolio</button><button class="admin-tab" data-tab="inbox" data-i18n="admin.inbox">Messages</button><button class="admin-tab" data-tab="orders">Commandes</button><button class="admin-tab" data-tab="deletions">Demandes RGPD</button><button class="admin-tab" data-tab="updates" data-i18n="admin.updates">Journal</button><button class="admin-tab" data-tab="stats">Statistiques</button><button class="admin-tab" data-tab="promos">Codes promo</button><button class="admin-tab" data-tab="settings" data-i18n="admin.settings">Réglages</button><button class="admin-tab" data-tab="profile-banner">Profil & bannière</button></div>
+    <section class="admin-pane active" data-pane="products"><form id="product-form" class="admin-form"><input id="product-id" type="hidden"><label>Nom<input id="product-name" required maxlength="100"></label><label>Catégorie<select id="product-category"><option value="roblox">Roblox</option><option value="discord">Discord</option><option value="graphisme">Graphisme</option><option value="coaching">Coaching</option><option value="strategy">Stratégie</option></select></label><label>Description<textarea id="product-description" rows="2" required maxlength="500"></textarea></label><label class="image-dropzone">Ajouter des photos depuis votre appareil<input id="product-image-files" type="file" multiple accept="image/*"><span>Glissez les images ici ou cliquez pour les sélectionner. La première image est la couverture ; les flèches changent l’ordre.</span></label><div id="product-images-preview" class="product-image-editor"></div><div class="form-row"><label>Tarif horaire (valeur numérique)<input id="product-price" type="number" inputmode="decimal" min="0" step="0.01" required placeholder="20"></label><label>Ancien tarif (facultatif)<input id="product-original-price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="30"></label></div><div class="form-row"><label>Stock<select id="product-stock"><option value="available">En stock</option><option value="soldout">Rupture</option><option value="upcoming">À venir</option></select></label><label>Promotion (facultatif)<input id="product-promo" maxlength="40" placeholder="-20 %"></label></div><div class="form-row"><label>Date de sortie<input id="product-release" type="datetime-local"></label><label>Statut<select id="product-active"><option value="true">Publié</option><option value="false">Brouillon</option></select></label></div><div class="product-flags"><label class="switch-row"><span>En vedette</span><input id="product-featured" type="checkbox"><span class="switch-ui"></span></label><label class="switch-row"><span>En promotion</span><input id="product-is-promo" type="checkbox"><span class="switch-ui"></span></label></div><div class="dialog-actions"><button class="button button-primary" type="submit">Enregistrer</button><button id="product-reset" class="button button-outline" type="button">Nouveau</button></div></form><div id="admin-products-list" class="admin-list"></div></section>
+    <section class="admin-pane" data-pane="partners"><p class="muted">Vignettes partenaires — couleur néon, logo, liens multiples.</p><div id="admin-partners-list" class="admin-list"></div><form id="partner-form" class="admin-form"><input id="partner-id" type="hidden"><label>Titre<input id="partner-title" required maxlength="120"></label><label>Description<textarea id="partner-description" rows="3" maxlength="800"></textarea></label><label>Couleur de thème<input id="partner-theme-color" type="color" value="#94baff"></label><label class="image-dropzone">Logo / image<input id="partner-image-file" type="file" accept="image/*"><span>JPG, PNG, WebP — max 8 Mo (contain).</span></label><img id="partner-image-preview" class="profile-banner-preview" alt="" hidden><input id="partner-image-url" type="hidden"><label>Liens (label|url, un par ligne)<textarea id="partner-links" rows="4" maxlength="2000" placeholder="Discord|https://discord.gg/…&#10;Bot|https://…&#10;Site|https://…"></textarea></label><label class="switch-row"><span>Publié</span><input id="partner-active" type="checkbox" checked><span class="switch-ui"></span></label><label>Ordre<input id="partner-order" type="number" min="0" max="9999" value="0"></label><div class="dialog-actions"><button class="button button-primary" type="submit">Enregistrer</button><button id="partner-reset" class="button button-outline" type="button">Nouveau</button></div></form></section>
+    <section class="admin-pane" data-pane="orders"><div class="inbox-toolbar"><label>Recherche commande<input id="admin-orders-search" type="search" placeholder="Client, e-mail, produit…"></label><label>Date<select id="admin-orders-date"><option value="recent">Plus récents</option><option value="oldest">Plus anciens</option><option value="today">Aujourd’hui</option><option value="week">Cette semaine</option></select></label><label>Statut<select id="admin-orders-status-filter"><option value="all">Tous</option><option value="requested">Demandé</option><option value="discussion">En discussion</option><option value="awaiting_payment">En attente de paiement</option><option value="in_progress">En cours</option><option value="testing">En test</option><option value="delivered">Livré</option></select></label></div><div id="admin-orders-list" class="admin-list"></div><form id="admin-payment-form" class="admin-form" hidden><h3>Lien de paiement / OnParticipe</h3><label>URL de paiement (OnParticipe ou autre)<input id="admin-payment-url" type="url" required placeholder="https://www.onparticipe.fr/c/icarestudio"></label><button class="button button-primary" type="submit">Enregistrer et notifier le client</button></form></section>
+    <section class="admin-pane" data-pane="inbox">
+      <div class="inbox-toolbar"><label>Rechercher<input id="admin-inbox-search" type="search" placeholder="Message, e-mail ou nom…"></label><label>Date<select id="admin-inbox-date"><option value="recent">Plus récents</option><option value="oldest">Plus anciens</option><option value="today">Aujourd’hui</option><option value="week">Cette semaine</option></select></label><label>Statut<select id="admin-inbox-status"><option value="all">Toutes</option><option value="open">Ouvertes</option><option value="closed">Fermées</option><option value="waiting">En attente de réponse</option></select></label></div>
+      <div class="admin-inbox-layout"><div id="admin-inbox" class="admin-list"></div><div class="admin-thread-panel"><div id="admin-thread-header" class="admin-thread-header"><p class="muted">Sélectionnez une conversation pour répondre.</p></div><div id="admin-thread" class="admin-thread"><p class="muted">Vos conversations apparaîtront ici.</p></div><label id="admin-order-status-wrap" class="admin-status-select" hidden>Suivi de commande<select id="admin-order-status"><option value="requested">Demande reçue</option><option value="discussion">En discussion</option><option value="awaiting_payment">En attente de paiement</option><option value="in_progress">En cours</option><option value="testing">En test</option><option value="delivered">Livré</option></select></label><div id="quick-replies" class="quick-replies" hidden><span>Réponses rapides</span><button type="button" class="small-admin-button" data-quick-reply="Merci pour votre message ! Je reviens vers vous rapidement.">Bien reçu</button><button type="button" class="small-admin-button" data-quick-reply="Votre demande est en cours de traitement.">En cours</button><button type="button" class="small-admin-button" data-quick-reply="Votre projet est livré ! N’hésitez pas si vous avez une question.">Livré</button></div><form id="admin-reply-form" class="chat-form" hidden><textarea id="admin-reply-input" rows="2" maxlength="2000" required placeholder="Votre réponse…"></textarea><div class="chat-compose-footer"><span><span id="admin-reply-count">0</span> / 2000</span><button class="button button-primary" type="submit" aria-label="Envoyer">Envoyer ↗</button></div></form></div></div>
+    </section>
+    <section class="admin-pane" data-pane="updates"><form id="changelog-form" class="admin-form"><label>Titre<input id="changelog-title" required maxlength="120"></label><label>Note<textarea id="changelog-body" rows="3" required maxlength="1000"></textarea></label><button class="button button-primary" type="submit">Publier la mise à jour</button></form></section>
+    <section class="admin-pane" data-pane="portfolio"><p class="muted">La première image de la galerie est utilisée comme couverture. Réordonnez les images avec les flèches.</p><div id="admin-portfolio-list" class="admin-list"></div><form id="portfolio-form" class="admin-form"><input id="portfolio-id" type="hidden"><label>Titre<input id="portfolio-title" required maxlength="140"></label><label>Catégorie<select id="portfolio-category"><option value="web">Développement Web/App</option><option value="gaming">Roblox & Gaming</option><option value="graphisme">Graphisme & Design Visuel</option></select></label><label>Description complète<textarea id="portfolio-description" rows="4" required maxlength="5000"></textarea></label><label>Tags / catégories (séparés par des virgules)<input id="portfolio-tags" maxlength="300" placeholder="Roblox, Discord, Bot"></label><div class="form-row"><label>Prix / valeur<input id="portfolio-value" maxlength="100" placeholder="Valeur du projet"></label><label>Coût financier / ressources<input id="portfolio-cost" maxlength="300"></label></div><label>Temps de réalisation<input id="portfolio-duration" maxlength="100" placeholder="3 semaines"></label><label>Difficultés rencontrées<textarea id="portfolio-challenges" rows="3" maxlength="2000"></textarea></label><label>Solutions apportées<textarea id="portfolio-solutions" rows="3" maxlength="2000"></textarea></label><div class="form-row"><label>Lien de démonstration (facultatif)<input id="portfolio-demo-url" type="url" maxlength="1000" placeholder="https://…"></label><label>Code source (facultatif)<input id="portfolio-source-url" type="url" maxlength="1000" placeholder="https://…"></label></div><label class="image-dropzone">Ajouter des images du projet<input id="portfolio-image-files" type="file" multiple accept="image/*"><span>Glissez ou sélectionnez les images. La première est la couverture.</span></label><div id="portfolio-images-list" class="portfolio-image-editor"></div><label class="switch-row"><span>Publié</span><input id="portfolio-active" type="checkbox" checked><span class="switch-ui"></span></label><label>Ordre d’affichage<input id="portfolio-order" type="number" min="0" max="9999" value="0"></label><div class="dialog-actions"><button class="button button-primary" type="submit">Enregistrer le projet</button><button id="portfolio-reset" class="button button-outline" type="button">Nouveau projet</button></div></form></section>
+    <section class="admin-pane" data-pane="stats"><p class="muted">Seules les statistiques saisies ici sont affichées sur la page d’accueil. Aucun chiffre n’est ajouté automatiquement.</p><div id="admin-stats-list" class="admin-list"></div><form id="stats-form" class="admin-form"><input id="stats-original-key" type="hidden"><label>Identifiant unique<input id="stats-key" required maxlength="40" pattern="[a-z][a-z0-9_-]*" placeholder="serveurs"></label><label>Titre (français)<input id="stats-label-fr" required maxlength="80"></label><label>Title (English)<input id="stats-label-en" required maxlength="80"></label><label>Valeur<input id="stats-value" required maxlength="30" placeholder="50"></label><label>Suffixe (facultatif)<input id="stats-suffix" maxlength="12" placeholder="+, k+, %"></label><label>Ordre d’affichage<input id="stats-order" type="number" min="0" max="9999" value="0" required></label><div class="dialog-actions"><button class="button button-primary" type="submit">Enregistrer la statistique</button><button id="stats-reset" class="button button-outline" type="button">Nouveau</button><button id="stats-delete" class="button button-outline" type="button" disabled>Supprimer</button></div></form></section>
+    <section class="admin-pane" data-pane="promos"><p class="muted">Les codes sont ajoutés aux demandes de commande ; les prix affichés restent configurés sur chaque produit.</p><form id="promo-code-form" class="admin-form"><label>Code<input id="promo-code" required maxlength="32" pattern="[A-Za-z0-9_-]+" placeholder="ICARE10"></label><label>Réduction (%)<input id="promo-discount" type="number" min="1" max="100" required></label><label>Date d’expiration (facultatif)<input id="promo-expiry" type="datetime-local"></label><label class="switch-row"><span>Actif</span><input id="promo-active" type="checkbox" checked><span class="switch-ui"></span></label><button class="button button-primary" type="submit">Créer le code</button></form><div id="admin-promo-list" class="admin-list"></div></section>
+    <section class="admin-pane" data-pane="settings"><form id="settings-form" class="admin-form"><h3>Réglages du site</h3><label class="switch-row"><span>Mode maintenance</span><input id="maintenance-toggle" type="checkbox"><span class="switch-ui"></span></label><label>Message de maintenance<textarea id="settings-message" rows="3" maxlength="300"></textarea></label><label>Fin estimée<input id="settings-end" type="datetime-local"></label><label>Couleur d'ambiance<input id="settings-color" type="color" value="#86b8ff"></label><label>Disponibilité<select id="settings-availability"><option value="open">Ouvert aux commissions</option><option value="limited">Places limitées</option><option value="closed">Complet</option></select></label><h3>Référencement & partage social</h3><label>Titre SEO<input id="settings-meta-title" maxlength="100"></label><label>Description SEO<textarea id="settings-meta-description" rows="3" maxlength="300"></textarea></label><label>Mots-clés (séparés par des virgules)<input id="settings-keywords" maxlength="500"></label><label>URL de l’image de partage (Open Graph)<input id="settings-og-image" type="url"></label><label>URL publique canonique du site<input id="settings-site-url" type="url" placeholder="https://icare.dev"></label><h3>Identité légale (coordonnées réelles uniquement)</h3><label>Statut de l’éditeur<input id="settings-business-status" maxlength="120"></label><label>SIRET / SIREN<input id="settings-registration" maxlength="80"></label><label>Siège social<input id="settings-address" maxlength="300"></label><label>E-mail de contact<input id="settings-legal-email" type="email" maxlength="254"></label><label>Directeur de publication<input id="settings-director" maxlength="120"></label><label>Médiateur de la consommation<input id="settings-mediator" maxlength="300"></label><h3>Documents légaux</h3><label>Date de dernière mise à jour<input id="settings-legal-updated-at" type="date"></label><label>Mentions légales<textarea id="settings-legal-notice" rows="6" maxlength="10000"></textarea></label><label>Conditions générales d’utilisation<textarea id="settings-legal-terms" rows="6" maxlength="10000"></textarea></label><label>Conditions générales de vente<textarea id="settings-legal-sales" rows="8" maxlength="10000"></textarea></label><label>Confidentialité & RGPD<textarea id="settings-legal-privacy" rows="8" maxlength="10000"></textarea></label><button class="button button-primary" type="submit">Enregistrer les réglages</button></form></section>
+    <section class="admin-pane" data-pane="profile-banner"><form id="hero-banner-form" class="admin-form"><h3>Bannière principale (accueil)</h3><p class="muted">Image d’illustration de la page d’accueil.</p><label class="image-dropzone">Choisir une image<input id="hero-banner-file" type="file" accept="image/*"><span>Max 8 Mo.</span></label><img id="hero-banner-preview" class="profile-banner-preview" alt="" hidden><button class="button button-primary" type="submit">Enregistrer</button></form>
+    <form id="language-flags-form" class="admin-form"><h3>Drapeaux du sélecteur de langue</h3><p class="muted">URL d’image par langue (24×24). Vide = Flagcdn par défaut.</p><div id="language-flags-fields"></div><button class="button button-primary" type="submit">Enregistrer les drapeaux</button></form>
+    <form id="profile-banner-form" class="admin-form"><h3>Bannière du profil Discord</h3><p class="muted">Choisissez l’image de couverture affichée au-dessus du profil.</p><label class="radio-row"><input type="radio" name="profile-banner-mode" value="discord" checked><span>Récupérer la bannière de Discord (Lanyard), si disponible</span></label><label class="radio-row"><input type="radio" name="profile-banner-mode" value="custom"><span>Bannière personnalisée</span></label><label id="profile-banner-upload" class="image-dropzone" hidden>Choisir une image depuis votre appareil<input id="profile-banner-file" type="file" accept="image/*"><span>Image JPG, PNG, WebP ou GIF, maximum 8 Mo.</span></label><img id="profile-banner-preview" class="profile-banner-preview" alt="Aperçu de la bannière de profil" hidden><button class="button button-primary" type="submit">Enregistrer la bannière</button></form></section>
+    <section class="admin-pane" data-pane="deletions"><p class="muted">Les demandes de suppression sont des demandes de traitement manuel ; elles ne suppriment pas automatiquement un compte.</p><div id="admin-deletion-requests" class="admin-list"></div></section>
+  </dialog>
+
+  <dialog id="portfolio-dialog" class="app-dialog portfolio-dialog"><button class="dialog-close" data-close-dialog aria-label="Fermer">×</button><div id="portfolio-detail"></div></dialog>
+  <dialog id="product-dialog" class="app-dialog product-dialog"><button class="dialog-close" data-close-dialog aria-label="Fermer">×</button><div id="product-detail"></div></dialog>
+
+  <dialog id="review-dialog" class="app-dialog"><button class="dialog-close" data-close-dialog aria-label="Fermer">×</button><div class="dialog-kicker">VOTRE RETOUR</div><h2 data-i18n="review.title">Un mot sur notre collaboration ?</h2><form id="review-form" class="admin-form"><label>Votre note<select id="review-rating" required><option value="5">5 — Excellent</option><option value="4">4 — Très bien</option><option value="3">3 — Bien</option><option value="2">2 — Moyen</option><option value="1">1 — À améliorer</option></select></label><label>Votre avis<textarea id="review-body" rows="4" maxlength="600" required></textarea></label><button class="button button-primary" type="submit" data-i18n="review.submit">Envoyer mon avis</button><p class="muted small">Les avis sont publiés après validation.</p></form></dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./i18n.js"></script>
+  <script src="./supabase.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
